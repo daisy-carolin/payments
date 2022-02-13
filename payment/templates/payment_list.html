@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment list</title>
+</head>
+<body>
+    <style>
+        tr{
+            color: purple;
+        }
+        td{
+            color: black;
+        }
+        body{
+            background-color: beige;
+           
+        }
+        table{
+    width: 800px;
+    margin: auto;
+    text-align: center;
+    table-layout:auto;
+}
+table,tr,th,td{
+    padding: 20px;
+    color: rgb(10, 154, 190);
+    border: 1px solid rgb(6, 61, 99);
+    border-collapse: collapse;
+    font-size: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande','Lucida Sans'
+    'Unicode',Geneva, Verdana, sans-serif;
+    background:linear-gradient(top,rgb(130, 238, 229) 0%,rgb(145, 241, 212) 100%);
+    text-align:center;
+    margin-top:40px;
+}
+td:hover{
+    background: rgb(148, 206, 253) ;
+}
+h1{
+    text-align: center;
+    color: rgb(82, 226, 226);
+    padding-top: 10%;
+}
+ img{
+     width:40px;
+     height:50px;
+ }
+    </style>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Plate Number</th>
+            <th>Date</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+            <th>Profile</th>
+            <th>Edit</th>
+
+          
+             </tr>
+            <tr>
+
+            {% for payment in payments %}
+            {% if payment.image %}             <th>Image</th>
+
+            <td><img src="{{payment.image.url}}"></td>
+            {% endif %}
+            <td>{{payment.first_name}}</td>
+            <td>{{payment.last_name}}</td>
+           <td>{{payment.plate_number}}</td>
+            <td>{{payment.date}}</td>
+            <td>{{payment.time_in}}</td>
+            <td>{{payment.time_out}}</td>
+            <!-- <td>{{payment.profile}}</td>
+            <td>{{payment.edit}}</td> -->
+          
+            <td><a href="{% url 'payment_profile' id=payment.id%}">Profile<a/></td>
+            <td><a href="{% url 'edit_payment' id=payment.id%}">Edit<a/></td>
+
+
+        </tr>
+        {%endfor%}
+    </table>
+   
+</body>
+</html>
